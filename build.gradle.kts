@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "nl.jvhaastert"
-version = "1.0.0"
+version = "1.1.0"
 java.sourceCompatibility = JavaVersion.VERSION_14
 
 repositories {
@@ -14,6 +14,7 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib"))
+    implementation("org.springframework:spring-context:5.3.1")
     implementation("org.springframework.data:spring-data-commons:2.4.2")
     implementation("com.squareup:kotlinpoet:1.7.2")
 

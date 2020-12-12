@@ -1,8 +1,8 @@
-package nl.jvhaastert.springutils.data.processors
+package nl.jvhaastert.springutils.processors
 
 import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
-import nl.jvhaastert.springutils.data.annotations.RepositoryEntity
+import nl.jvhaastert.springutils.annotations.RepositoryEntity
 import org.springframework.data.repository.CrudRepository
 import javax.annotation.processing.AbstractProcessor
 import javax.annotation.processing.RoundEnvironment

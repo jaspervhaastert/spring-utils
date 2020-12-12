@@ -1,1 +1,2 @@
-nl.jvhaastert.springutils.data.processors.RepositoryEntityProcessor
+nl.jvhaastert.springutils.processors.RepositoryEntityProcessor
+nl.jvhaastert.springutils.processors.ServiceEntityProcessor
