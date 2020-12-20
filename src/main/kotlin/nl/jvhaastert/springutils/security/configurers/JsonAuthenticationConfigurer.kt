@@ -9,11 +9,15 @@ import nl.jvhaastert.springutils.security.filters.JsonAuthenticationFilter
 import nl.jvhaastert.springutils.security.handlers.JsonAuthenticationFailureHandler
 import nl.jvhaastert.springutils.security.handlers.JwtAuthenticationSuccessHandler
 import org.springframework.context.ApplicationContext
+import org.springframework.http.HttpMethod
 import org.springframework.http.MediaType
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.config.annotation.web.HttpSecurityBuilder
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer
 import org.springframework.security.config.annotation.web.configurers.ExceptionHandlingConfigurer
+import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer
+import org.springframework.security.config.annotation.web.configurers.SessionManagementConfigurer
+import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.web.authentication.AuthenticationFailureHandler
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler
 import org.springframework.security.web.util.matcher.MediaTypeRequestMatcher
@@ -41,6 +45,9 @@ class JsonAuthenticationConfigurer<H : HttpSecurityBuilder<H>> :
             Http401AuthenticationEntryPoint(),
             getAuthenticationEntryPointMatcher(http)
         )
+
+        val sessionManagement = http.getConfigurer<H, SessionManagementConfigurer<H>>()
+        sessionManagement?.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
         if (http.getSharedObject<ObjectMapper>() == null) {
             val applicationContext = http.getSharedObject(ApplicationContext::class.java)
