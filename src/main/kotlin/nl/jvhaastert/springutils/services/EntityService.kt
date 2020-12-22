@@ -5,11 +5,15 @@ import nl.jvhaastert.springutils.interfaces.Entity
 import org.springframework.data.repository.CrudRepository
 
 abstract class EntityService<T, R>(
-    private val repository: R
+    protected val repository: R
 ) where T : Entity, R : CrudRepository<T, Long> {
 
     open fun getAll(): Iterable<T> {
         return repository.findAll()
+    }
+
+    open fun existsById(id: Long): Boolean {
+        return repository.existsById(id)
     }
 
     open fun getById(id: Long): T {
