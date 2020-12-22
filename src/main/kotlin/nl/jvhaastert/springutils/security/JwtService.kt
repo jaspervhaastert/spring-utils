@@ -19,6 +19,8 @@ class JwtService(
         val expirationInstant = nowInstant.plus(jwtConfigurationProperties.expireDuration)
         val expirationDate = Date.from(expirationInstant)
 
+        val authorities = user.authorities.map { grantedAuthority -> grantedAuthority.authority }
+
         return Jwts
             .builder()
             .setSubject(user.id.toString())
@@ -28,7 +30,7 @@ class JwtService(
             .setNotBefore(nowDate)
             .setExpiration(expirationDate)
             .claim("username", user.username)
-            .claim("authorities", user.authorities)
+            .claim("authorities", authorities)
             .signWith(jwtConfigurationProperties.secretKey)
             .compact()
     }
